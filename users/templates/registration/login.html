@@ -1,0 +1,24 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <div class="form-signin w-100 m-auto">
+
+    <form method="post" action="{% url 'users:login' %}">
+        <div class="text-center">
+            <h1 class="h3 mb-3 fw-normal">Please Log in</h1>
+        </div>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+        <input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
+    </form>
+    </div>
+
+{% endblock content %}
