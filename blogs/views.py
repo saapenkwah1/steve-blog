@@ -7,24 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    item = BlogPost.objects.get(id = 1)
-    item2 = BlogPost.objects.get(id =2)
-    item3 = BlogPost.objects.get(id =3)
-    if len(item.text) > 100:
-        display_blog1 = f'{item.text[:100]}...'
-
-    if len(item2.text) > 50:
-        display_blog2 = f'{item2.text[:20]}...'
-        display_ttitle1 = item2.title
-    
-    if len(item3.text) > 50:
-        display_blog3 = f'{item3.text[:20]}...'
-        display_ttitle2 = item3.title
-    
-    context = {'item': item, 'display1':display_blog1, 
-        'display2':display_blog2, 'display3':display_blog3, 'title1':display_ttitle1,
-        'title2':display_ttitle2,
-        }
+    items = BlogPost.objects.all()
+    context = {'items': items}
     return render(request, 'blogs/index.html',context)
 
 
